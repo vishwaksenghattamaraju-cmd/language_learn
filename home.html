@@ -2,42 +2,177 @@
 <html lang="en">
 
 <head>
-    <title>languages</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Languages - language-learn</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="sidebar"><br></br>
-        <button id="home">home</button><br></br>
-        <button id="about">about</button><br></br>
-        <button id="contact">contact</button><br></br>
-        <button id="settings">settings</button><br></br>
+    <!-- Decorative background video: fixed behind all content, never interactive -->
+    <div class="bg-video bg-video--home" aria-hidden="true">
+        <video class="bg-video__media" autoplay muted loop playsinline preload="metadata" disablepictureinpicture tabindex="-1" poster="assets/images/home-poster.jpg">
+            <source src="assets/videos/home-background.mp4" type="video/mp4">
+        </video>
     </div>
-    <h1>learn languages</h1>
-    <button id="python">python</button>
-    <button id="node.js">node.js</button>
-    <button id="C">C language</button>
+
+    <!-- Humanised Navigation Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo-text">language-<span>learn</span></div>
+            <div class="brand-tagline">Language Hub</div>
+        </div>
+        <div class="sidebar-nav-list">
+            <button id="home" class="active" title="Go to Home"><span class="nav-icon">🏠</span> Home</button>
+            <button id="about" title="About Page"><span class="nav-icon">📖</span> About</button>
+            <button id="contact" title="Get in Touch"><span class="nav-icon">💬</span> Contact</button>
+        </div>
+        <div class="sidebar-status">
+            <span class="pulse-dot"></span> Active Hub
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Welcoming Badge -->
+        <div style="text-align: center;">
+            <div class="badge-pill">✨ Interactive Learning Pathways</div>
+        </div>
+
+        <h1>Master Modern <span class="gradient-text">Programming</span></h1>
+        <p class="subtitle">Welcome! Choose a language track below to explore official documentation, development guides, and step-by-step toolchains.</p>
+
+        <!-- Interactive Language Selection Buttons -->
+        <div class="language-buttons-row">
+            <button id="python" title="Download Python installer and setup">
+                <span>🐍 Python</span>
+                <span class="lang-tag">AI & Data</span>
+            </button>
+            <button id="node.js" title="Download and explore Node.js runtime">
+                <span>🟢 Node.js</span>
+                <span class="lang-tag">Web & Backend</span>
+            </button>
+            <button id="C" title="Get started with C language setup">
+                <span>⚡ C language</span>
+                <span class="lang-tag">Systems & Core</span>
+            </button>
+        </div>
+
+        <h2 id="text"><b>Download the required languages from the above options</b></h2>
+
+        <!-- Humanised Reading Card with Original Essay -->
+        <article class="essay-container">
+            <div class="essay-header">
+                <div class="essay-header-icon">💡</div>
+                <div>
+                    <h3>Why Learn a New Language?</h3>
+                    <p>Insights on cognitive growth, career flexibility, and global connection</p>
+                </div>
+            </div>
+
+            <p id="essay">Learning a new language offers many advantages in both personal and professional life. First, it
+                improves communication skills by allowing people to connect with individuals from different cultures and
+                backgrounds. It also enhances cognitive abilities such as memory, problem-solving, and concentration, as
+                learning a language challenges the brain to think in new ways.
+                In addition, knowing another language can create better career opportunities. Many employers value multilingual
+                employees because they can communicate with international clients and work in global environments. Learning a
+                language also helps people gain a deeper understanding of different cultures, traditions, and perspectives,
+                which promotes tolerance and open-mindedness.
+                Overall, learning a new language is a valuable skill that enriches personal growth, broadens opportunities, and
+                helps build connections with people around the world.
+            </p>
+
+            <!-- Humanised Takeaway Cards -->
+            <div class="essay-highlights-grid">
+                <div class="highlight-box">
+                    <span class="highlight-box-icon">🧠</span>
+                    <div>
+                        <h4>Sharper Thinking</h4>
+                        <p>Strengthens logical reasoning, memory recall, and focus.</p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <span class="highlight-box-icon">💼</span>
+                    <div>
+                        <h4>Career Growth</h4>
+                        <p>Opens doors in international teams and modern industries.</p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <span class="highlight-box-icon">🌐</span>
+                    <div>
+                        <h4>Global Connection</h4>
+                        <p>Bridges cultures and creates meaningful collaboration.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Featured Stacks Dock -->
+        <div style="text-align: center;">
+            <span class="badge-pill warm-badge">Featured Technologies</span>
+        </div>
+        <div class="images-container">
+            <div class="logo-badge">
+                <img class="image1"
+                    src="https://www.citypng.com/public/uploads/preview/hd-python-logo-symbol-transparent-png-735811696257415dbkifcuokn.png"
+                    alt="Python logo">
+                <span class="logo-label">Python</span>
+            </div>
+            <div class="logo-badge">
+                <img class="image2"
+                    src="https://www.clipartmax.com/png/middle/150-1504620_javascript-logo.png"
+                    alt="JavaScript logo">
+                <span class="logo-label">JavaScript</span>
+            </div>
+            <div class="logo-badge">
+                <img class="image3"
+                    src="https://w7.pngwing.com/pngs/940/524/png-transparent-html5-plain-wordmark-logo-icon.png"
+                    alt="HTML5 logo">
+                <span class="logo-label">HTML5</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>Crafted for curious learners • All rights reserved &copy; 2026 language-learn</footer>
+
+    <!-- Humanised Contact Modal -->
+    <div id="contact-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="home-modal-title">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+            <div class="badge-pill warm-badge">🤝 Let's Connect</div>
+            <h3 id="home-modal-title">We'd Love to Hear From You</h3>
+            <p>Have questions, learning feedback, or need help? Reach out directly:</p>
+
+            <div class="modal-contact-details">
+                <div class="modal-contact-row">
+                    <span class="modal-icon">✉️</span>
+                    <div>
+                        <div class="label">Email Address</div>
+                        <a href="mailto:example@gmail.com" class="value">example@gmail.com</a>
+                    </div>
+                </div>
+                <div class="modal-contact-row">
+                    <span class="modal-icon">📱</span>
+                    <div>
+                        <div class="label">Phone Number</div>
+                        <a href="tel:9988776655" class="value">9988776655</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <a href="mailto:example@gmail.com" class="action-btn primary-btn">✉️ Send an Email</a>
+                <a href="tel:9988776655" class="action-btn secondary-btn">📞 Call 9988776655</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Toast -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite">Copied to clipboard!</div>
+
     <script src="javascipt1.js"></script>
-    <h2 id="text"><b>click the language you want to learn</b></h2>
-    <p id="essay">Learning a new language offers many advantages in both personal and professional life. First, it
-        improves
-        communication skills by allowing people to connect with individuals from different cultures and backgrounds. It
-        also enhances cognitive abilities such as memory, problem-solving, and concentration, as learning a language
-        challenges the brain to think in new ways.
-        In addition, knowing another language can create better career opportunities. Many employers value multilingual
-        employees because they can communicate with international clients and work in global environments. Learning a
-        language also helps people gain a deeper understanding of different cultures, traditions, and perspectives,
-        which promotes tolerance and open-mindedness.
-        Overall, learning a new language is a valuable skill that enriches personal growth, broadens opportunities, and
-        helps build connections with people around the world.
-    </p>
-    <img class="image1"
-        src="https://www.citypng.com/public/uploads/preview/hd-python-logo-symbol-transparent-png-735811696257415dbkifcuokn.png"
-        ;alt=python>
-    <img class="image2" src="https://www.clipartmax.com/png/middle/150-1504620_javascript-logo.png" ;alt="javascript">
-    <img class=" image3" src="https://w7.pngwing.com/pngs/940/524/png-transparent-html5-plain-wordmark-logo-icon.png"
-        ;alt="html">
-    <footer>All rights reserved &copy; 2026</footer>
 </body>
 
 </html>

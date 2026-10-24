@@ -2,16 +2,162 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - language-learn</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="home.html">
-    <title>About</title>
 </head>
 
 <body>
-    <p align=center>Copyright © 2026 datABase. All rights reserved. The content on this website, including text, images,
-        code, and design elements, is protected by copyright law and may not be copied, reproduced, or used without
-        permission.</p>
-    <button id="back">back</button>
+    <!-- Decorative background video: fixed behind all content, never interactive -->
+    <div class="bg-video bg-video--about" aria-hidden="true">
+        <video class="bg-video__media" autoplay muted loop playsinline preload="metadata" disablepictureinpicture tabindex="-1" poster="assets/images/about-poster.jpg">
+            <source src="assets/videos/about-background.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Humanised Navigation Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo-text">language-<span>learn</span></div>
+            <div class="brand-tagline">Language Hub</div>
+        </div>
+        <div class="sidebar-nav-list">
+            <button id="home" title="Go to Home"><span class="nav-icon">🏠</span> Home</button>
+            <button id="about" class="active" title="About Page"><span class="nav-icon">📖</span> About</button>
+            <button id="contact" title="Get in Touch"><span class="nav-icon">💬</span> Contact</button>
+        </div>
+        <div class="sidebar-status">
+            <span class="pulse-dot"></span> Active Hub
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Friendly Back Button -->
+        <button id="back" class="btn-back" title="Return to home page">
+            <span>←</span> Back to Home
+        </button>
+
+        <header style="text-align: center;">
+            <div class="badge-pill">🌱 Our Story & Purpose</div>
+            <h1>About <span class="gradient-text">language-learn</span></h1>
+            <p class="subtitle">A welcoming learning hub built to help curious learners explore programming languages and foundational computer skills with confidence.</p>
+        </header>
+
+        <!-- About Overview Cards -->
+        <section class="about-grid">
+            <article class="glass-card">
+                <span class="card-icon">🚀</span>
+                <h2>Our Mission</h2>
+                <p>
+                    Programming doesn't need to feel overwhelming. At <strong>language-learn</strong>, we believe every developer starts with curiosity.
+                    Our mission is to guide you straight to the most dependable official resources, setup toolchains, and interactive documentation for languages like Python, Node.js, and C.
+                </p>
+            </article>
+
+            <article class="glass-card">
+                <span class="card-icon">💡</span>
+                <h2>Why Learn Languages?</h2>
+                <p>
+                    Writing code is creative problem solving. Learning languages trains your memory, cultivates patience, and gives you the power
+                    to build tools that solve genuine human problems across automation, web backends, and low-level systems.
+                </p>
+            </article>
+
+            <article class="glass-card">
+                <span class="card-icon">🤝</span>
+                <h2>Always Accessible</h2>
+                <p>
+                    All resources recommended on language-learn are free, open, and directly linked to their official foundations.
+                    No paywalls or confusing detours—just clean access to the tools you need to build your dreams.
+                </p>
+            </article>
+        </section>
+
+        <!-- Humanised Contact Details Section -->
+        <section id="contact-section" class="glass-card contact-section">
+            <div class="contact-header">
+                <span class="badge-pill warm-badge">🤝 Let's Connect</span>
+                <h2>We'd Love to Hear From You</h2>
+                <p class="contact-desc">Have a question about getting started, suggestions for new guides, or simply want to say hello? Our team is always happy to connect.</p>
+            </div>
+
+            <div class="contact-cards-container">
+                <!-- Email Item -->
+                <div class="contact-item">
+                    <div class="contact-item-icon">✉️</div>
+                    <div class="contact-item-info">
+                        <span class="label">Email Address</span>
+                        <a href="mailto:example@gmail.com" class="value" id="email-link">example@gmail.com</a>
+                    </div>
+                    <button class="copy-btn" id="copy-email" type="button" title="Copy email address">📋 Copy</button>
+                </div>
+
+                <!-- Phone Item -->
+                <div class="contact-item">
+                    <div class="contact-item-icon">📱</div>
+                    <div class="contact-item-info">
+                        <span class="label">Phone Number</span>
+                        <a href="tel:9988776655" class="value" id="phone-link">9988776655</a>
+                    </div>
+                    <button class="copy-btn" id="copy-phone" type="button" title="Copy phone number">📋 Copy</button>
+                </div>
+            </div>
+
+            <!-- Direct Quick Action Buttons -->
+            <div class="contact-actions">
+                <a href="mailto:example@gmail.com" class="action-btn primary-btn">✉️ Send an Email</a>
+                <a href="tel:9988776655" class="action-btn secondary-btn">📞 Call 9988776655</a>
+            </div>
+        </section>
+
+        <!-- Copyright & Terms Section -->
+        <section class="glass-card copyright-card">
+            <p>Copyright © 2026 language-learn. All rights reserved. The content on this website, including text, images,
+                code, and design elements, is protected by copyright law and may not be copied, reproduced, or used without
+                permission.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>Crafted for curious learners • All rights reserved &copy; 2026 language-learn</footer>
+
+    <!-- Humanised Contact Modal -->
+    <div id="contact-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+            <div class="badge-pill warm-badge">🤝 Let's Connect</div>
+            <h3 id="modal-title">Get In Touch</h3>
+            <p>Reach out to us anytime via email or phone call:</p>
+
+            <div class="modal-contact-details">
+                <div class="modal-contact-row">
+                    <span class="modal-icon">✉️</span>
+                    <div>
+                        <div class="label">Email Address</div>
+                        <a href="mailto:example@gmail.com" class="value">example@gmail.com</a>
+                    </div>
+                </div>
+                <div class="modal-contact-row">
+                    <span class="modal-icon">📱</span>
+                    <div>
+                        <div class="label">Phone Number</div>
+                        <a href="tel:9988776655" class="value">9988776655</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <a href="mailto:example@gmail.com" class="action-btn primary-btn">✉️ Send an Email</a>
+                <a href="tel:9988776655" class="action-btn secondary-btn">📞 Call 9988776655</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite">Copied to clipboard!</div>
+
     <script src="javascipt1.js"></script>
 </body>
 
