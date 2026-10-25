@@ -42,17 +42,17 @@ function addClick(id, handler) {
     }
 })();
 
-// Language external documentation links
+// Language tracks navigation: open immersive compiler guides
 addClick("python", function () {
-    window.location.href = "https://www.python.org/downloads/";
+    window.location.href = "python.html";
 });
 
 addClick("node.js", function () {
-    window.location.href = "https://nodejs.org/en/download";
+    window.location.href = "nodejs.html";
 });
 
 addClick("C", function () {
-    window.location.href = "https://installc.org/";
+    window.location.href = "c.html";
 });
 
 // Navigation buttons
@@ -182,3 +182,53 @@ function fallbackCopy(text) {
     }
     document.body.removeChild(textArea);
 }
+
+// OS Switcher Tabs Handler (Windows, macOS, Linux)
+document.addEventListener("DOMContentLoaded", function () {
+    const tabButtons = document.querySelectorAll(".os-tab-btn");
+    tabButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const targetTab = this.getAttribute("data-tab");
+            const container = this.closest(".os-tabs-container") || document;
+            
+            // Update active states on tab buttons
+            container.querySelectorAll(".os-tab-btn").forEach(function (b) {
+                b.classList.remove("active");
+            });
+            this.classList.add("active");
+
+            // Update active states on panels
+            container.querySelectorAll(".os-panel").forEach(function (panel) {
+                panel.classList.remove("active");
+            });
+            const activePanel = container.querySelector("#panel-" + targetTab);
+            if (activePanel) {
+                activePanel.classList.add("active");
+            }
+        });
+    });
+
+    // Copy Code Snippets Handler
+    const copyButtons = document.querySelectorAll(".copy-code-btn");
+    copyButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const codeWindow = this.closest(".code-window");
+            if (!codeWindow) return;
+            const codeEl = codeWindow.querySelector(".code-content-pre code") || codeWindow.querySelector("code");
+            if (!codeEl) return;
+
+            const textToCopy = codeEl.innerText.trim();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy)
+                    .then(function () {
+                        showToast("Copied command to clipboard!");
+                    })
+                    .catch(function () {
+                        fallbackCopy(textToCopy);
+                    });
+            } else {
+                fallbackCopy(textToCopy);
+            }
+        });
+    });
+});

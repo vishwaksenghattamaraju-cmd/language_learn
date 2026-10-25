@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Compiler & Toolchain Setup - language-learn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Decorative background video: fixed behind all content, never interactive -->
+    <div class="bg-video bg-video--c" aria-hidden="true">
+        <video class="bg-video__media" autoplay muted loop playsinline preload="metadata" disablepictureinpicture tabindex="-1" poster="assets/images/home-poster.jpg">
+            <source src="assets/videos/home-background.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Humanised Navigation Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo-text">language-<span>learn</span></div>
+            <div class="brand-tagline">Language Hub</div>
+        </div>
+        <div class="sidebar-nav-list">
+            <button id="home" title="Go to Home"><span class="nav-icon">🏠</span> Home</button>
+            <button id="about" title="About Page"><span class="nav-icon">📖</span> About</button>
+            <button id="contact" title="Get in Touch"><span class="nav-icon">💬</span> Contact</button>
+        </div>
+        <div class="sidebar-status">
+            <span class="pulse-dot"></span> Active Hub
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="lang-header-nav">
+            <button id="back" class="btn-back" title="Return to home page">
+                <span>←</span> Back to Home
+            </button>
+            <div class="lang-switcher-row">
+                <a href="python.html" class="lang-pill-link">🐍 Python</a>
+                <a href="nodejs.html" class="lang-pill-link">🟢 Node.js</a>
+                <a href="c.html" class="lang-pill-link active">⚡ C Language</a>
+            </div>
+        </div>
+
+        <header style="text-align: center; margin-bottom: 28px;">
+            <div class="badge-pill warm-badge">⚡ Language Track: C Language</div>
+            <h1>C Compiler <span class="gradient-text">&amp; Toolchain Setup</span></h1>
+            <p class="subtitle">Discover the 4 stages of C compilation, GCC and Clang toolchains, MinGW-w64 on Windows, and UNIX build environments.</p>
+        </header>
+
+        <!-- Compiler Pipeline Breakdown -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">⚙️</div>
+                <div>
+                    <h2>The 4 Stages of C Compilation</h2>
+                    <p>Unlike interpreted languages, C code compiles directly into machine instructions through four distinct transformation phases.</p>
+                </div>
+            </div>
+
+            <div class="pipeline-grid">
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Stage 1</span>
+                    <div class="pipeline-card-icon">🔍</div>
+                    <h3>Preprocessing</h3>
+                    <p>Strips comments, expands <code>#define</code> macros, and copies header files into code via the C preprocessor (<code>cpp</code>).</p>
+                    <span class="pipeline-subtag">main.c &rarr; main.i</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Stage 2</span>
+                    <div class="pipeline-card-icon">⚡</div>
+                    <h3>Compilation</h3>
+                    <p>The compiler (<code>cc1</code>) converts preprocessed C code into target-specific assembly instructions, applying optimizations.</p>
+                    <span class="pipeline-subtag">main.i &rarr; main.s</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Stage 3</span>
+                    <div class="pipeline-card-icon">🧱</div>
+                    <h3>Assembly</h3>
+                    <p>The assembler (<code>as</code>) translates assembly instructions into raw binary machine code object files.</p>
+                    <span class="pipeline-subtag">main.s &rarr; main.o</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Stage 4</span>
+                    <div class="pipeline-card-icon">🔗</div>
+                    <h3>Linking</h3>
+                    <p>The linker (<code>ld</code>) links your object code with C standard runtime libraries (<code>libc</code>) into a final binary executable.</p>
+                    <span class="pipeline-subtag">main.o &rarr; app.exe</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- OS Installation Guides with Interactive Tabs -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">💻</div>
+                <div>
+                    <h2>Installing GCC / Clang by Operating System</h2>
+                    <p>Select your operating system to set up the GNU Compiler Collection (GCC) or LLVM/Clang compiler toolchain.</p>
+                </div>
+            </div>
+
+            <div class="os-tabs-container">
+                <div class="os-tabs-nav">
+                    <button class="os-tab-btn active" data-tab="windows">🪟 Windows (MinGW-w64)</button>
+                    <button class="os-tab-btn" data-tab="macos">🍎 macOS (Apple Clang)</button>
+                    <button class="os-tab-btn" data-tab="linux">🐧 Linux (GCC / Build-Essential)</button>
+                </div>
+
+                <!-- Windows Panel -->
+                <div class="os-panel active" id="panel-windows">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Option 1 (Recommended): WinLibs Standalone GCC</h3>
+                        </div>
+                        <p class="step-desc">WinLibs provides a standalone, pre-built MinGW-w64 GCC and LLVM toolchain that requires no complicated installer:</p>
+                        <p class="step-desc">1. Download the <strong>MinGW-w64 GCC zip archive (UCRT runtime)</strong> from the download section below.<br>
+                        2. Extract the archive into <code>C:\mingw64</code>.<br>
+                        3. Add <code>C:\mingw64\bin</code> to your Windows System <code>PATH</code>.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>Configuring System PATH on Windows</h3>
+                        </div>
+                        <p class="step-desc">To make <code>gcc</code> accessible in any Command Prompt or PowerShell terminal:</p>
+                        <div class="callout-box warning">
+                            <span class="callout-icon">💡</span>
+                            <div class="callout-text">
+                                <h4>Environment Path Steps</h4>
+                                <p>Press <kbd>Win + R</kbd>, type <code>sysdm.cpl</code>, press Enter. Go to <strong>Advanced</strong> &rarr; <strong>Environment Variables</strong>. Edit <strong>Path</strong> in System Variables, click <strong>New</strong>, and paste <code>C:\mingw64\bin</code>. Click OK and restart your terminal.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">3</span>
+                            <h3>Option 2: Install via MSYS2 Package Manager</h3>
+                        </div>
+                        <p class="step-desc">If you prefer a complete Linux-like package manager on Windows, install MSYS2 from <a href="https://www.msys2.org/" target="_blank" style="color: var(--color-orange-light);">msys2.org</a> and run:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">MSYS2 UCRT64 Terminal</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">pacman</span> <span class="code-flag">-S</span> <span class="code-flag">--needed</span> base-devel mingw-w64-ucrt-x86_64-toolchain</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- macOS Panel -->
+                <div class="os-panel" id="panel-macos">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Install Apple Clang via Command Line Tools</h3>
+                        </div>
+                        <p class="step-desc">Apple ships an optimized version of the LLVM/Clang C compiler. You can install it with a single terminal command without downloading Xcode:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">macOS Terminal</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">xcode-select</span> <span class="code-flag">--install</span></code></pre>
+                        </div>
+                        <p class="step-desc">A dialog will appear on your screen. Click <strong>"Install"</strong> and agree to the license terms.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>Optional: Install GNU GCC via Homebrew</h3>
+                        </div>
+                        <p class="step-desc">If your project strictly requires GNU GCC rather than Clang, install it using Homebrew:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">macOS Terminal (zsh)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">brew</span> <span class="code-arg">install</span> gcc</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linux Panel -->
+                <div class="os-panel" id="panel-linux">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Install build-essential (GCC, Make, GDB)</h3>
+                        </div>
+                        <p class="step-desc">Debian and Ubuntu provide the <code>build-essential</code> meta-package containing GCC, G++, Make, and the C standard library headers:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">Bash (Ubuntu / Debian / Mint)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">sudo</span> apt update &amp;&amp; <span class="code-cmd">sudo</span> apt install <span class="code-flag">-y</span> build-essential gdb valgrind</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>For Fedora / Red Hat / CentOS</h3>
+                        </div>
+                        <p class="step-desc">On RPM-based distributions, install the Development Tools group:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">Bash (Fedora / RHEL)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">sudo</span> dnf groupinstall <span class="code-str">"Development Tools"</span> <span class="code-flag">-y</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verification & Test Run Section -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">🧪</div>
+                <div>
+                    <h2>Compiling &amp; Running Your First C Program</h2>
+                    <p>Verify that your compiler responds correctly by checking its version and compiling a clean "Hello World" source file.</p>
+                </div>
+            </div>
+
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <div class="code-window-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-window-title">Verify Compiler Version</span>
+                    <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                </div>
+                <pre class="code-content-pre"><code><span class="code-cmd">gcc</span> <span class="code-flag">--version</span></code></pre>
+            </div>
+
+            <p style="margin: 16px 0 10px 0; color: var(--color-white-orange);">Create a file named <code>hello.c</code>:</p>
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <div class="code-window-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-window-title">hello.c</span>
+                    <button class="copy-code-btn" type="button" title="Copy code">📋 Copy</button>
+                </div>
+                <pre class="code-content-pre"><code><span class="code-kw">#include</span> <span class="code-str">&lt;stdio.h&gt;</span>
+
+<span class="code-kw">int</span> <span class="code-cmd">main</span>(<span class="code-kw">void</span>) {
+    <span class="code-cmd">printf</span>(<span class="code-str">"Hello, World from C! Compiler configured successfully.\n"</span>);
+    <span class="code-kw">return</span> <span class="code-arg">0</span>;
+}</code></pre>
+            </div>
+
+            <p style="margin: 16px 0 10px 0; color: var(--color-white-orange);">Compile and execute using GCC:</p>
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <div class="code-window-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-window-title">Compile &amp; Run Terminal Commands</span>
+                    <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                </div>
+                <pre class="code-content-pre"><code><span class="code-comment"># 1. Compile with all warnings (-Wall, -Wextra) and optimization (-O2)</span>
+<span class="code-cmd">gcc</span> <span class="code-flag">-Wall</span> <span class="code-flag">-Wextra</span> <span class="code-flag">-O2</span> hello.c <span class="code-flag">-o</span> hello
+
+<span class="code-comment"># 2. Run the executable</span>
+<span class="code-comment"># On Windows:</span>
+.\hello.exe
+<span class="code-comment"># On macOS / Linux:</span>
+./hello</code></pre>
+            </div>
+        </section>
+
+        <!-- Compiler Flags Reference Card -->
+        <section class="glass-card" style="margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <span style="font-size: 24px;">🛡️</span>
+                <h3 style="font-size: 18px; color: var(--color-white-orange);">Recommended GCC Compiler Flags</h3>
+            </div>
+            <p style="color: var(--color-white-orange-body); font-size: 14.5px; line-height: 1.7;">
+                • <code>-Wall -Wextra</code>: Enables rich compiler diagnostic warnings to catch bugs before execution.<br>
+                • <code>-O2</code> / <code>-O3</code>: Enables compiler code optimization passes for high execution speed.<br>
+                • <code>-g</code>: Embeds debug symbols in the binary for debugging with GDB or LLDB.<br>
+                • <code>-std=c17</code>: Enforces modern ISO C17 standard compliance.
+            </p>
+        </section>
+
+        <!-- Prominent Official Download Section at Bottom -->
+        <section class="download-hero-section">
+            <div class="download-emblem">⚡</div>
+            <h2 class="download-hero-title">Official C Compiler Downloads</h2>
+            <p class="download-hero-desc">Download authentic GCC / MinGW-w64 compiler builds directly from official developer foundations. Fast, robust, and completely free.</p>
+
+            <div class="download-meta-row">
+                <span class="download-meta-pill">GCC 14.x / MinGW-w64</span>
+                <span class="download-meta-pill">UCRT Runtime Support</span>
+                <span class="download-meta-pill">Includes GDB &amp; Make</span>
+                <span class="download-meta-pill">GPLv3 License (Open Source)</span>
+            </div>
+
+            <!-- Primary Download Link Button -->
+            <a href="https://winlibs.com/" target="_blank" rel="noopener noreferrer" class="download-cta-btn">
+                <span class="download-cta-main">
+                    <span>⬇️</span> Download MinGW-w64 GCC Compiler
+                </span>
+                <span class="download-cta-sub">Direct portal to WinLibs Standalone GCC for Windows</span>
+            </a>
+
+            <!-- Alternative Mirrors & Platform Direct Links -->
+            <div class="download-mirrors-container">
+                <div class="download-mirrors-title">Direct Platform Mirrors &amp; Documentation</div>
+                <div class="download-mirrors-grid">
+                    <a href="https://installc.org/" target="_blank" rel="noopener noreferrer" class="mirror-link">🌐 Install C Guide</a>
+                    <a href="https://gcc.gnu.org/" target="_blank" rel="noopener noreferrer" class="mirror-link">🏛️ GNU GCC Official</a>
+                    <a href="https://www.msys2.org/" target="_blank" rel="noopener noreferrer" class="mirror-link">📦 MSYS2 Toolchain</a>
+                    <a href="https://releases.llvm.org/" target="_blank" rel="noopener noreferrer" class="mirror-link">🔥 LLVM / Clang Releases</a>
+                    <a href="https://en.cppreference.com/w/c" target="_blank" rel="noopener noreferrer" class="mirror-link">📖 C Reference Docs</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>Crafted for curious learners • All rights reserved &copy; 2026 language-learn</footer>
+
+    <!-- Humanised Contact Modal -->
+    <div id="contact-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+            <div class="badge-pill warm-badge">🤝 Let's Connect</div>
+            <h3 id="modal-title">Get In Touch</h3>
+            <p>Reach out to us anytime via email or phone call:</p>
+
+            <div class="modal-contact-details">
+                <div class="modal-contact-row">
+                    <span class="modal-icon">✉️</span>
+                    <div>
+                        <div class="label">Email Address</div>
+                        <a href="mailto:example@gmail.com" class="value">example@gmail.com</a>
+                    </div>
+                </div>
+                <div class="modal-contact-row">
+                    <span class="modal-icon">📱</span>
+                    <div>
+                        <div class="label">Phone Number</div>
+                        <a href="tel:9988776655" class="value">9988776655</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <a href="mailto:example@gmail.com" class="action-btn primary-btn">✉️ Send an Email</a>
+                <a href="tel:9988776655" class="action-btn secondary-btn">📞 Call 9988776655</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite">Copied to clipboard!</div>
+
+    <script src="javascipt1.js"></script>
+</body>
+
+</html>

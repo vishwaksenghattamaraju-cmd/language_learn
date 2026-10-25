@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Compiler & Setup - language-learn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Decorative background video: fixed behind all content, never interactive -->
+    <div class="bg-video bg-video--python" aria-hidden="true">
+        <video class="bg-video__media" autoplay muted loop playsinline preload="metadata" disablepictureinpicture tabindex="-1" poster="assets/images/home-poster.jpg">
+            <source src="assets/videos/home-background.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Humanised Navigation Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo-text">language-<span>learn</span></div>
+            <div class="brand-tagline">Language Hub</div>
+        </div>
+        <div class="sidebar-nav-list">
+            <button id="home" title="Go to Home"><span class="nav-icon">🏠</span> Home</button>
+            <button id="about" title="About Page"><span class="nav-icon">📖</span> About</button>
+            <button id="contact" title="Get in Touch"><span class="nav-icon">💬</span> Contact</button>
+        </div>
+        <div class="sidebar-status">
+            <span class="pulse-dot"></span> Active Hub
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="lang-header-nav">
+            <button id="back" class="btn-back" title="Return to home page">
+                <span>←</span> Back to Home
+            </button>
+            <div class="lang-switcher-row">
+                <a href="python.html" class="lang-pill-link active">🐍 Python</a>
+                <a href="nodejs.html" class="lang-pill-link">🟢 Node.js</a>
+                <a href="c.html" class="lang-pill-link">⚡ C Language</a>
+            </div>
+        </div>
+
+        <header style="text-align: center; margin-bottom: 28px;">
+            <div class="badge-pill warm-badge">🐍 Language Track: Python</div>
+            <h1>Python <span class="gradient-text">Compiler & Setup</span></h1>
+            <p class="subtitle">Understand the CPython runtime, bytecode compilation pipeline, PATH configuration, and cross-platform installation guides.</p>
+        </header>
+
+        <!-- Compiler Architecture Breakdown -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">⚙️</div>
+                <div>
+                    <h2>How Python Compilation Works</h2>
+                    <p>While Python is often called an interpreted language, it automatically compiles source code to bytecode before execution.</p>
+                </div>
+            </div>
+
+            <div class="pipeline-grid">
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Phase 1</span>
+                    <div class="pipeline-card-icon">📄</div>
+                    <h3>Source Code</h3>
+                    <p>You write readable human code in <code>.py</code> files using indentation, functions, and standard libraries.</p>
+                    <span class="pipeline-subtag">script.py</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Phase 2</span>
+                    <div class="pipeline-card-icon">⚡</div>
+                    <h3>Bytecode Compiler</h3>
+                    <p>The parser builds an AST, which the internal compiler translates into platform-neutral bytecode instructions.</p>
+                    <span class="pipeline-subtag">__pycache__/*.pyc</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Phase 3</span>
+                    <div class="pipeline-card-icon">🔄</div>
+                    <h3>CPython PVM</h3>
+                    <p>The Python Virtual Machine (PVM) iterates through bytecode instructions and executes them on your machine's CPU.</p>
+                    <span class="pipeline-subtag">CPython Evaluation Loop</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Phase 4</span>
+                    <div class="pipeline-card-icon">📦</div>
+                    <h3>Package Ecosystem</h3>
+                    <p>Use <code>pip</code> to install third-party packages from PyPI and <code>venv</code> to isolate project dependencies.</p>
+                    <span class="pipeline-subtag">pip &amp; virtualenv</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- OS Installation Guides with Interactive Tabs -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">💻</div>
+                <div>
+                    <h2>Step-by-Step Installation by Operating System</h2>
+                    <p>Select your operating system below for tailored instructions to install Python and configure environment variables.</p>
+                </div>
+            </div>
+
+            <div class="os-tabs-container">
+                <div class="os-tabs-nav">
+                    <button class="os-tab-btn active" data-tab="windows">🪟 Windows</button>
+                    <button class="os-tab-btn" data-tab="macos">🍎 macOS</button>
+                    <button class="os-tab-btn" data-tab="linux">🐧 Linux (Ubuntu/Debian)</button>
+                </div>
+
+                <!-- Windows Panel -->
+                <div class="os-panel active" id="panel-windows">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Download the Official 64-bit Installer</h3>
+                        </div>
+                        <p class="step-desc">Grab the latest Windows installer (e.g., <code>python-3.x.x-amd64.exe</code>) from the official download link at the bottom of this page.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>Enable 'Add python.exe to PATH' (Critical)</h3>
+                        </div>
+                        <p class="step-desc">When launching the installer, look at the very bottom of the first setup window. <strong>You MUST check the box:</strong></p>
+                        <div class="callout-box warning">
+                            <span class="callout-icon">⚠️</span>
+                            <div class="callout-text">
+                                <h4>Crucial Setup Step</h4>
+                                <p>Ensure <strong>[✔] Add python.exe to PATH</strong> is checked before clicking "Install Now". This registers Python in your terminal so commands like <code>python</code> and <code>pip</code> work globally.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">3</span>
+                            <h3>Complete Installation &amp; Disable Path Length Limit</h3>
+                        </div>
+                        <p class="step-desc">Click "Install Now". On the successful completion screen, click <strong>"Disable path length limit"</strong> if prompted. This prevents file path length errors when dealing with complex node/python libraries.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">4</span>
+                            <h3>Alternative: Windows Package Manager (Winget)</h3>
+                        </div>
+                        <p class="step-desc">If you prefer installing via PowerShell or Command Prompt, run:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">PowerShell / Command Prompt</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">winget</span> <span class="code-arg">install</span> <span class="code-flag">-e</span> <span class="code-flag">--id</span> Python.Python.3.13</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- macOS Panel -->
+                <div class="os-panel" id="panel-macos">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Method 1: Install via Homebrew (Recommended)</h3>
+                        </div>
+                        <p class="step-desc">Homebrew is the cleanest way to manage developer packages on macOS without altering system-level libraries:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">macOS Terminal (zsh)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">brew</span> <span class="code-arg">update</span> &amp;&amp; <span class="code-cmd">brew</span> <span class="code-arg">install</span> python</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>Method 2: Official macOS Universal Installer (.pkg)</h3>
+                        </div>
+                        <p class="step-desc">Download the <code>.pkg</code> file from the bottom of this page. Double-click the downloaded package and follow the standard macOS installation wizard. It installs Python and updates your shell profile automatically.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">3</span>
+                            <h3>Verify Default Alias in zsh</h3>
+                        </div>
+                        <p class="step-desc">On modern macOS versions, the default shell is <code>zsh</code>. You can alias <code>python</code> to <code>python3</code> in your <code>~/.zshrc</code> file:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">macOS Terminal (zsh)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">echo</span> <span class="code-str">'alias python="python3"'</span> &gt;&gt; ~/.zshrc &amp;&amp; <span class="code-cmd">source</span> ~/.zshrc</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linux Panel -->
+                <div class="os-panel" id="panel-linux">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Update System Repositories</h3>
+                        </div>
+                        <p class="step-desc">Update your package index to ensure you download the latest security patches and runtime versions:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">Bash (Ubuntu / Debian)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">sudo</span> apt update &amp;&amp; <span class="code-cmd">sudo</span> apt upgrade <span class="code-flag">-y</span></code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>Install Python 3, Pip &amp; Virtual Environments</h3>
+                        </div>
+                        <p class="step-desc">Install the core Python interpreter along with the standard package manager and venv package:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">Bash (Ubuntu / Debian)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">sudo</span> apt install <span class="code-flag">-y</span> python3 python3-pip python3-venv build-essential</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verification & Test Run Section -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">🧪</div>
+                <div>
+                    <h2>Verifying Your Python Setup</h2>
+                    <p>Open a new terminal window (restart terminal if it was already open) and test that Python and Pip respond correctly.</p>
+                </div>
+            </div>
+
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <div class="code-window-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-window-title">Check Compiler &amp; Package Manager Versions</span>
+                    <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                </div>
+                <pre class="code-content-pre"><code><span class="code-cmd">python</span> <span class="code-flag">--version</span>
+<span class="code-cmd">pip</span> <span class="code-flag">--version</span></code></pre>
+            </div>
+
+            <p style="margin: 16px 0 10px 0; color: var(--color-white-orange);">Run a quick interactive one-liner to verify runtime execution:</p>
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <div class="code-window-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-window-title">One-Liner Verification Test</span>
+                    <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                </div>
+                <pre class="code-content-pre"><code><span class="code-cmd">python</span> <span class="code-flag">-c</span> <span class="code-str">"print('Python compiler and environment operational!')"</span></code></pre>
+            </div>
+        </section>
+
+        <!-- Troubleshooting Card -->
+        <section class="glass-card" style="margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <span style="font-size: 24px;">🔧</span>
+                <h3 style="font-size: 18px; color: var(--color-white-orange);">Troubleshooting: 'python' is not recognized</h3>
+            </div>
+            <p style="color: var(--color-white-orange-body); font-size: 14.5px; line-height: 1.7;">
+                If your terminal reports that <code>'python' is not recognized as an internal or external command</code> on Windows, you likely forgot to check "Add Python to PATH" during installation. To fix this without reinstalling:
+                <br><br>
+                1. Press <kbd>Win + S</kbd> and search for <strong>"Environment Variables"</strong>.
+                <br>
+                2. Click <strong>"Edit the system environment variables"</strong> &rarr; <strong>"Environment Variables"</strong>.
+                <br>
+                3. Under <em>User variables</em>, select <code>Path</code> and click <strong>Edit</strong>.
+                <br>
+                4. Add: <code>%LOCALAPPDATA%\Programs\Python\Python3xx\</code> and <code>%LOCALAPPDATA%\Programs\Python\Python3xx\Scripts\</code>.
+                <br>
+                5. Restart your terminal window.
+            </p>
+        </section>
+
+        <!-- Prominent Official Download Section at Bottom -->
+        <section class="download-hero-section">
+            <div class="download-emblem">🐍</div>
+            <h2 class="download-hero-title">Official Python Compiler Downloads</h2>
+            <p class="download-hero-desc">Download the official, authenticated Python runtime and toolchain directly from the Python Software Foundation. 100% free, open-source, and verified.</p>
+
+            <div class="download-meta-row">
+                <span class="download-meta-pill">Latest Stable Release</span>
+                <span class="download-meta-pill">Includes IDLE &amp; Pip</span>
+                <span class="download-meta-pill">Windows • macOS • Linux</span>
+                <span class="download-meta-pill">PSF License (Open Source)</span>
+            </div>
+
+            <!-- Primary Download Link Button -->
+            <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer" class="download-cta-btn">
+                <span class="download-cta-main">
+                    <span>⬇️</span> Download Python Official Installer
+                </span>
+                <span class="download-cta-sub">Direct portal to python.org/downloads</span>
+            </a>
+
+            <!-- Alternative Mirrors & Platform Direct Links -->
+            <div class="download-mirrors-container">
+                <div class="download-mirrors-title">Direct Platform Mirrors &amp; Documentation</div>
+                <div class="download-mirrors-grid">
+                    <a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener noreferrer" class="mirror-link">🪟 Windows 64-bit</a>
+                    <a href="https://www.python.org/downloads/macos/" target="_blank" rel="noopener noreferrer" class="mirror-link">🍎 macOS Universal</a>
+                    <a href="https://www.python.org/downloads/source/" target="_blank" rel="noopener noreferrer" class="mirror-link">🐧 Linux / Source Gzip</a>
+                    <a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer" class="mirror-link">📖 Official Documentation</a>
+                    <a href="https://pypi.org/" target="_blank" rel="noopener noreferrer" class="mirror-link">📦 PyPI Packages</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>Crafted for curious learners • All rights reserved &copy; 2026 language-learn</footer>
+
+    <!-- Humanised Contact Modal -->
+    <div id="contact-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+            <div class="badge-pill warm-badge">🤝 Let's Connect</div>
+            <h3 id="modal-title">Get In Touch</h3>
+            <p>Reach out to us anytime via email or phone call:</p>
+
+            <div class="modal-contact-details">
+                <div class="modal-contact-row">
+                    <span class="modal-icon">✉️</span>
+                    <div>
+                        <div class="label">Email Address</div>
+                        <a href="mailto:example@gmail.com" class="value">example@gmail.com</a>
+                    </div>
+                </div>
+                <div class="modal-contact-row">
+                    <span class="modal-icon">📱</span>
+                    <div>
+                        <div class="label">Phone Number</div>
+                        <a href="tel:9988776655" class="value">9988776655</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <a href="mailto:example@gmail.com" class="action-btn primary-btn">✉️ Send an Email</a>
+                <a href="tel:9988776655" class="action-btn secondary-btn">📞 Call 9988776655</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite">Copied to clipboard!</div>
+
+    <script src="javascipt1.js"></script>
+</body>
+
+</html>

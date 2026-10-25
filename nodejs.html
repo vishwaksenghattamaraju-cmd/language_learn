@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Runtime & Setup - language-learn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Decorative background video: fixed behind all content, never interactive -->
+    <div class="bg-video bg-video--nodejs" aria-hidden="true">
+        <video class="bg-video__media" autoplay muted loop playsinline preload="metadata" disablepictureinpicture tabindex="-1" poster="assets/images/about-poster.jpg">
+            <source src="assets/videos/about-background.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Humanised Navigation Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo-text">language-<span>learn</span></div>
+            <div class="brand-tagline">Language Hub</div>
+        </div>
+        <div class="sidebar-nav-list">
+            <button id="home" title="Go to Home"><span class="nav-icon">🏠</span> Home</button>
+            <button id="about" title="About Page"><span class="nav-icon">📖</span> About</button>
+            <button id="contact" title="Get in Touch"><span class="nav-icon">💬</span> Contact</button>
+        </div>
+        <div class="sidebar-status">
+            <span class="pulse-dot"></span> Active Hub
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Navigation Bar -->
+        <div class="lang-header-nav">
+            <button id="back" class="btn-back" title="Return to home page">
+                <span>←</span> Back to Home
+            </button>
+            <div class="lang-switcher-row">
+                <a href="python.html" class="lang-pill-link">🐍 Python</a>
+                <a href="nodejs.html" class="lang-pill-link active">🟢 Node.js</a>
+                <a href="c.html" class="lang-pill-link">⚡ C Language</a>
+            </div>
+        </div>
+
+        <header style="text-align: center; margin-bottom: 28px;">
+            <div class="badge-pill warm-badge">🟢 Language Track: Node.js</div>
+            <h1>Node.js <span class="gradient-text">Runtime &amp; Setup</span></h1>
+            <p class="subtitle">Master Google's V8 JavaScript engine, asynchronous event loop, npm ecosystem, and cross-platform installation.</p>
+        </header>
+
+        <!-- Compiler / Engine Architecture Breakdown -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">⚡</div>
+                <div>
+                    <h2>How the Node.js V8 Engine Works</h2>
+                    <p>Node.js is an open-source, cross-platform JavaScript runtime environment built on Google's ultra-fast V8 C++ engine.</p>
+                </div>
+            </div>
+
+            <div class="pipeline-grid">
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Phase 1</span>
+                    <div class="pipeline-card-icon">📜</div>
+                    <h3>JavaScript Code</h3>
+                    <p>Modern ES modules and CommonJS scripts written using contemporary async/await, closures, and APIs.</p>
+                    <span class="pipeline-subtag">app.js / server.js</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Phase 2</span>
+                    <div class="pipeline-card-icon">🧠</div>
+                    <h3>V8 Parser &amp; AST</h3>
+                    <p>V8 parses your JavaScript source code into an Abstract Syntax Tree (AST) checking for grammatical syntax.</p>
+                    <span class="pipeline-subtag">V8 Abstract Syntax Tree</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Phase 3</span>
+                    <div class="pipeline-card-icon">🚀</div>
+                    <h3>Ignition &amp; TurboFan</h3>
+                    <p>The Ignition interpreter generates bytecode; the TurboFan JIT compiler compiles hot code into native CPU machine instructions.</p>
+                    <span class="pipeline-subtag">JIT Machine Code</span>
+                </div>
+
+                <div class="pipeline-card">
+                    <span class="pipeline-step-badge">Phase 4</span>
+                    <div class="pipeline-card-icon">🔄</div>
+                    <h3>Libuv &amp; Event Loop</h3>
+                    <p>A multi-platform support library providing asynchronous non-blocking I/O through an event-driven thread pool.</p>
+                    <span class="pipeline-subtag">libuv Event Loop</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- OS Installation Guides with Interactive Tabs -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">💻</div>
+                <div>
+                    <h2>Installation Guide Across Operating Systems</h2>
+                    <p>Choose your platform to install Node.js LTS (Long Term Support) alongside the Node Package Manager (npm).</p>
+                </div>
+            </div>
+
+            <div class="os-tabs-container">
+                <div class="os-tabs-nav">
+                    <button class="os-tab-btn active" data-tab="windows">🪟 Windows</button>
+                    <button class="os-tab-btn" data-tab="macos">🍎 macOS</button>
+                    <button class="os-tab-btn" data-tab="linux">🐧 Linux (Ubuntu/Debian)</button>
+                </div>
+
+                <!-- Windows Panel -->
+                <div class="os-panel active" id="panel-windows">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Download the Windows MSI Installer</h3>
+                        </div>
+                        <p class="step-desc">Download the <strong>64-bit Windows Installer (<code>.msi</code>)</strong> from the bottom of this page. This bundles Node.js, npm, and automatic PATH registration.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>Run Setup Wizard &amp; Verify Components</h3>
+                        </div>
+                        <p class="step-desc">Accept the license agreement and leave default options selected (Node.js runtime, corepack, npm package manager, and Add to PATH). Click <strong>Next &rarr; Install</strong>.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">3</span>
+                            <h3>Native Build Tools (Optional for C++ Addons)</h3>
+                        </div>
+                        <p class="step-desc">If you intend to compile native C/C++ npm modules (such as <code>bcrypt</code> or <code>sharp</code>), the installer can automatically download Python and Visual Studio Build Tools via Chocolatey.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">4</span>
+                            <h3>Alternative: Install via Winget or NVM for Windows</h3>
+                        </div>
+                        <p class="step-desc">To install cleanly via PowerShell:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">PowerShell (Run as Administrator)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">winget</span> <span class="code-arg">install</span> <span class="code-flag">-e</span> <span class="code-flag">--id</span> OpenJS.NodeJS.LTS</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- macOS Panel -->
+                <div class="os-panel" id="panel-macos">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Option A: Install with Homebrew (Recommended)</h3>
+                        </div>
+                        <p class="step-desc">Homebrew ensures smooth version upgrades and integrates directly with your macOS user environment:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">macOS Terminal (zsh)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">brew</span> <span class="code-arg">install</span> node@22 &amp;&amp; <span class="code-cmd">brew</span> <span class="code-arg">link</span> node@22</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>Option B: Official macOS Installer (.pkg)</h3>
+                        </div>
+                        <p class="step-desc">Download the universal Apple Silicon / Intel <code>.pkg</code> installer from python/nodejs download links below and run the guided installer.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">3</span>
+                            <h3>Option C: Using NVM (Node Version Manager)</h3>
+                        </div>
+                        <p class="step-desc">If you work across different projects requiring different Node versions, install NVM:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">macOS Terminal (zsh)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">curl</span> <span class="code-flag">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | <span class="code-cmd">bash</span>
+<span class="code-cmd">nvm</span> <span class="code-arg">install</span> <span class="code-flag">--lts</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Linux Panel -->
+                <div class="os-panel" id="panel-linux">
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">1</span>
+                            <h3>Add Official NodeSource Node 22.x LTS Repository</h3>
+                        </div>
+                        <p class="step-desc">The default Ubuntu APT repository often contains older versions. Use the official NodeSource script for the latest active LTS:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">Bash (Ubuntu / Debian)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">curl</span> <span class="code-flag">-fsSL</span> https://deb.nodesource.com/setup_22.x | <span class="code-cmd">sudo</span> <span class="code-flag">-E</span> bash -</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-title-row">
+                            <span class="step-number-circle">2</span>
+                            <h3>Install Node.js &amp; Build Tools</h3>
+                        </div>
+                        <p class="step-desc">Run APT to install Node.js (which includes npm) and <code>build-essential</code> for native modules:</p>
+                        <div class="code-window">
+                            <div class="code-window-bar">
+                                <div class="code-window-dots">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                </div>
+                                <span class="code-window-title">Bash (Ubuntu / Debian)</span>
+                                <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                            </div>
+                            <pre class="code-content-pre"><code><span class="code-cmd">sudo</span> apt-get install <span class="code-flag">-y</span> nodejs build-essential</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verification & Test Run Section -->
+        <section class="guide-section">
+            <div class="section-header">
+                <div class="section-icon-box">🧪</div>
+                <div>
+                    <h2>Verifying Node.js &amp; NPM</h2>
+                    <p>Open a terminal or command prompt and test the versions of both the Node engine and the package manager:</p>
+                </div>
+            </div>
+
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <div class="code-window-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-window-title">Terminal Verification Commands</span>
+                    <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                </div>
+                <pre class="code-content-pre"><code><span class="code-cmd">node</span> <span class="code-flag">-v</span>
+<span class="code-cmd">npm</span> <span class="code-flag">-v</span></code></pre>
+            </div>
+
+            <p style="margin: 16px 0 10px 0; color: var(--color-white-orange);">Run an inline JavaScript snippet to ensure the V8 engine is operational:</p>
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <div class="code-window-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-window-title">Inline V8 Engine Test</span>
+                    <button class="copy-code-btn" type="button" title="Copy command">📋 Copy</button>
+                </div>
+                <pre class="code-content-pre"><code><span class="code-cmd">node</span> <span class="code-flag">-e</span> <span class="code-str">"console.log('Node.js runtime operational! V8 engine online.')"</span></code></pre>
+            </div>
+        </section>
+
+        <!-- Understanding LTS vs Current -->
+        <section class="glass-card" style="margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <span style="font-size: 24px;">💡</span>
+                <h3 style="font-size: 18px; color: var(--color-white-orange);">LTS (Long Term Support) vs Current: Which Should You Choose?</h3>
+            </div>
+            <p style="color: var(--color-white-orange-body); font-size: 14.5px; line-height: 1.7;">
+                <strong>LTS (Recommended):</strong> Supported for 30 months with high stability, critical bug patches, and security updates. This is the version recommended for all beginners, production backend servers, and commercial web applications.
+                <br><br>
+                <strong>Current:</strong> Contains the absolute latest ECMAScript features and experimental Node APIs. Best for developers wanting to test upcoming features before they reach LTS.
+            </p>
+        </section>
+
+        <!-- Prominent Official Download Section at Bottom -->
+        <section class="download-hero-section">
+            <div class="download-emblem">🟢</div>
+            <h2 class="download-hero-title">Official Node.js Runtime Downloads</h2>
+            <p class="download-hero-desc">Download the official, authenticated Node.js LTS package directly from the OpenJS Foundation. Includes Node runtime, npm, and npx.</p>
+
+            <div class="download-meta-row">
+                <span class="download-meta-pill">v22.x Active LTS Recommended</span>
+                <span class="download-meta-pill">Includes npm &amp; npx</span>
+                <span class="download-meta-pill">Google V8 Engine Inside</span>
+                <span class="download-meta-pill">MIT License (Open Source)</span>
+            </div>
+
+            <!-- Primary Download Link Button -->
+            <a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer" class="download-cta-btn">
+                <span class="download-cta-main">
+                    <span>⬇️</span> Download Node.js LTS Installer
+                </span>
+                <span class="download-cta-sub">Direct portal to nodejs.org/en/download</span>
+            </a>
+
+            <!-- Alternative Mirrors & Platform Direct Links -->
+            <div class="download-mirrors-container">
+                <div class="download-mirrors-title">Direct Platform Mirrors &amp; Documentation</div>
+                <div class="download-mirrors-grid">
+                    <a href="https://nodejs.org/en/download/package-manager" target="_blank" rel="noopener noreferrer" class="mirror-link">📦 Package Managers</a>
+                    <a href="https://github.com/nodejs/node/releases" target="_blank" rel="noopener noreferrer" class="mirror-link">🐙 GitHub Releases</a>
+                    <a href="https://nodejs.org/en/docs" target="_blank" rel="noopener noreferrer" class="mirror-link">📖 API Documentation</a>
+                    <a href="https://www.npmjs.com/" target="_blank" rel="noopener noreferrer" class="mirror-link">📚 NPM Registry</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>Crafted for curious learners • All rights reserved &copy; 2026 language-learn</footer>
+
+    <!-- Humanised Contact Modal -->
+    <div id="contact-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+            <div class="badge-pill warm-badge">🤝 Let's Connect</div>
+            <h3 id="modal-title">Get In Touch</h3>
+            <p>Reach out to us anytime via email or phone call:</p>
+
+            <div class="modal-contact-details">
+                <div class="modal-contact-row">
+                    <span class="modal-icon">✉️</span>
+                    <div>
+                        <div class="label">Email Address</div>
+                        <a href="mailto:example@gmail.com" class="value">example@gmail.com</a>
+                    </div>
+                </div>
+                <div class="modal-contact-row">
+                    <span class="modal-icon">📱</span>
+                    <div>
+                        <div class="label">Phone Number</div>
+                        <a href="tel:9988776655" class="value">9988776655</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <a href="mailto:example@gmail.com" class="action-btn primary-btn">✉️ Send an Email</a>
+                <a href="tel:9988776655" class="action-btn secondary-btn">📞 Call 9988776655</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite">Copied to clipboard!</div>
+
+    <script src="javascipt1.js"></script>
+</body>
+
+</html>
