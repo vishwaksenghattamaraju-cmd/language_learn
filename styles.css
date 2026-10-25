@@ -160,6 +160,21 @@ h1, h2, h3, h4,
     font-family: var(--font-heading);
 }
 
+/* VCR OSD Mono: custom display font applied to every H1 heading. */
+@font-face {
+    font-family: 'VCR OSD Mono';
+    src: url('assets/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+h1 {
+    font-family: 'VCR OSD Mono', monospace;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
 /* ==========================================================================
    SIDEBAR NAVIGATION
    ========================================================================== */
